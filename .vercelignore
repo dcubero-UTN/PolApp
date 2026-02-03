@@ -1,0 +1,10 @@
+/storage/*.key
+/vendor
+/node_modules
+.env
+.git
+.idea
+.vscode
+tests
+phpunit.xml
+README.md
