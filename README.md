@@ -1,59 +1,96 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# PolaApp
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+PolaApp es una aplicación web integral para la gestión empresarial, diseñada para administrar ventas, inventario, clientes y finanzas. Construida con Laravel y Livewire, ofrece una experiencia de usuario fluida y reactiva.
 
-## About Laravel
+## Características Principales
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 👥 Gestión de Clientes
+- **Directorio de Clientes:** Listado completo con búsqueda y filtrado.
+- **Perfiles Detallados:** Visualización de información de contacto e historial.
+- **Gestión:** Creación y edición sencilla de la información de clientes.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 📦 Inventario y Productos
+- **Catálogo de Productos:** Vista general de todos los productos disponibles en inventario.
+- **Gestión de Stock (Admin):** Creación, edición y actualización de productos.
+- **Proveedores y Compras (Admin):** Registro de proveedores y gestión de compras de inventario para reabastecimiento.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 💰 Ventas y Finanzas
+- **Registro de Ventas:** Interfaz eficiente para registrar nuevas ventas a clientes.
+- **Seguimiento de Gastos:** Registro y categorización de gastos operativos.
+- **Liquidaciones:** Gestión de liquidaciones con funcionalidad de generación y descarga de PDF.
 
-## Learning Laravel
+### 📊 Reportes y Análisis (Admin)
+- **Panel de Rentabilidad:** Reporte detallado de Finanzas (`SalesProfitabilityReport`) para analizar márgenes y ventas.
+- **Reporte de Devoluciones:** Seguimiento de productos devueltos.
+- **Cuentas por Pagar:** Reportes detallados de obligaciones pendientes con exportación a PDF.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 🔐 Seguridad y Roles
+El sistema implementa un estricto Control de Acceso Basado en Roles (RBAC):
+- **Administrador:** Acceso total al sistema, gestión de usuarios, inventario completo y reportes financieros.
+- **Vendedor:** Acceso enfocado en la operativa diaria: gestión de clientes, registro de ventas y visualización de productos.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Tecnologías Utilizadas
 
-## Laravel Sponsors
+- **Backend:** [Laravel 12](https://laravel.com)
+- **Frontend Interactivo:** [Livewire 3](https://livewire.laravel.com)
+- **Estilos:** [Tailwind CSS](https://tailwindcss.com)
+- **Base de Datos:** MySQL / MariaDB
+- **Autenticación:** Laravel Breeze
+- **Gestión de Permisos:** Spatie Laravel Permission
+- **Generación de Documentos:** DomPDF / Laravel Excel
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Instalación y Configuración
 
-### Premium Partners
+Sigue estos pasos para levantar el proyecto en tu entorno local:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. **Clonar el repositorio:**
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd PolaApp
+   ```
 
-## Contributing
+2. **Instalar dependencias de PHP:**
+   ```bash
+   composer install
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. **Instalar dependencias de Frontend:**
+   ```bash
+   npm install && npm run build
+   ```
 
-## Code of Conduct
+4. **Configurar el entorno:**
+   Duplica el archivo de ejemplo y genera la clave de la aplicación:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   *Asegúrate de configurar tus credenciales de base de datos en el archivo `.env`.*
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+5. **Ejecutar migraciones y datos de prueba (Seeders):**
+   ```bash
+   php artisan migrate --seed
+   ```
+   *Este comando creará las tablas necesarias y poblará la base de datos con usuarios y datos iniciales.*
 
-## Security Vulnerabilities
+## Credenciales de Acceso (Entorno Local)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Al ejecutar los seeders, se crean automáticamente los siguientes usuarios para pruebas:
 
-## License
+| Rol | Email | Contraseña |
+| --- | --- | --- |
+| **Administrador** | `admin@polaapp.com` | `admin123` |
+| **Vendedor** | `vendedor@polaapp.com` | `vendedor123` |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Ejecución Local
+
+Para iniciar el servidor de desarrollo, ejecuta:
+
+```bash
+php artisan serve
+```
+
+Accede a la aplicación en `http://localhost:8000`.
+
+---
+**PolaApp** - Simplificando la gestión comercial.
